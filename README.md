@@ -1,4 +1,4 @@
 # Radix
 
-This is a Python library to encode, decode and format numbers radixes/bases
+This is a Python library to encode, decode and format numbers in radixes/bases
 other than decimal.
