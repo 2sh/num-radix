@@ -506,6 +506,11 @@ if __name__ == "__main__":
 		show_colors = (sys.platform != 'win32' or 'ANSICON' in os.environ and
 			hasattr(sys.stdout, 'isatty') and sys.stdout.isatty())
 		
+		# Radix Demonstration
+		
+		# Creating a radix with the dozenal classmethod:
+#		radix = Radix.dozenal()
+		
 		print("Multiplication Table")
 		for a in range(1, radix.base+1):
 			for b in range(1, radix.base+1):
