@@ -200,7 +200,7 @@ class Radix:
 		Args:
 			number: The number encode.
 			fmt: The encode format.
-				This value is either an integer, specifying the precision, or
+				This value is either an integer, specifying the scale, or
 				a string in the Python format string syntax.
 		'''
 		if type(fmt) is str:
@@ -229,18 +229,18 @@ class Radix:
 		template_fmt = fmt
 		if has_fraction:
 			if not template_fmt:
-				precision = 17-len(indexes)
-				template_fmt = "." + str(precision) + "f"
+				scale = 17-len(indexes)
+				template_fmt = "." + str(scale) + "f"
 			else:
 				if type(template_fmt) is int:
-					precision = template_fmt
-					template_fmt = "." + str(precision) + "f"
+					scale = template_fmt
+					template_fmt = "." + str(scale) + "f"
 				else:
-					precision = self._get_precision_from_format(
+					scale = self._get_scale_from_format(
 						template_fmt)
 				
 			template = float(
-				(len(indexes) * "1") + "." + (precision * "1"))
+				(len(indexes) * "1") + "." + (scale * "1"))
 		else:
 			if not template_fmt:
 				template_fmt = "d"
@@ -254,9 +254,9 @@ class Radix:
 		
 		if has_fraction:
 			if type(fmt) is str:
-				precision = len(template.split(".")[1])
+				scale = len(template.split(".")[1])
 			
-			for i in range(precision):
+			for i in range(scale):
 				index, fraction = divmod(fraction*self.base, 1)
 				indexes.append(int(index))
 			
@@ -287,14 +287,14 @@ class Radix:
 		return output
 	
 	@staticmethod
-	def _get_precision_from_format(fmt):
-		precision = ""
+	def _get_scale_from_format(fmt):
+		scale = ""
 		try:
 			for char in fmt[fmt.index(".")+1:]:
 				if char not in string.digits:
 					break
-				precision += char
-			return int(precision)
+				scale += char
+			return int(scale)
 		except:
 			return None
 	
@@ -420,7 +420,7 @@ if __name__ == "__main__":
 	parser.add_argument("-f, --format",
 		dest="format", metavar="FORMAT", type=str,
 		help="set the encode output format. This value is either an integer, "
-			"specifying the precision, or a string "
+			"specifying the scale, or a string "
 			"in the Python format string syntax")
 	
 	parser.add_argument("-d, --decode",
