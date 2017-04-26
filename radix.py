@@ -400,7 +400,7 @@ if __name__ == "__main__":
 	
 	parser = argparse.ArgumentParser(description="Radix Converter")
 	
-	parser.add_argument("-b, --base",
+	parser.add_argument("-b", "--base",
 		dest="base", metavar="BASE", type=str, default="dozenal",
 		help="set the base. This can eiter be a number or one of the "
 			"following: bin, oct, hex, hex_lc, dozenal (andrews), "
@@ -412,18 +412,18 @@ if __name__ == "__main__":
 		help="set the digits to be used for the radix e.g. 0123456789ab... "
 			"The number of digits will be the base")
 		
-	parser.add_argument("-e, --encode",
+	parser.add_argument("-e", "--encode",
 		dest="encode", metavar="NUMBER", type=str,
 		help="encode the specified number or specify '-' to encode a list of"
 			"numbers separated by a newline")
 
-	parser.add_argument("-f, --format",
+	parser.add_argument("-f", "--format",
 		dest="format", metavar="FORMAT", type=str,
 		help="set the encode output format. This value is either an integer, "
 			"specifying the scale, or a string "
 			"in the Python format string syntax")
 	
-	parser.add_argument("-d, --decode",
+	parser.add_argument("-d", "--decode",
 		dest="decode", metavar="NUMBER", type=str,
 		help="decode the specified number or specify '-' to decode a list of"
 			"numbers separated by a newline")
