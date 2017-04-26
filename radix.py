@@ -200,7 +200,8 @@ class Radix:
 		Args:
 			number: The number encode.
 			fmt: The encode format.
-				This value is given in the Python format string syntax.
+				This value is either an integer, specifying the precision, or
+				a string in the Python format string syntax.
 		'''
 		if type(fmt) is str:
 			show_exponent_notation = fmt.endswith("e") or fmt.endswith("E")
@@ -418,8 +419,9 @@ if __name__ == "__main__":
 
 	parser.add_argument("-f, --format",
 		dest="format", metavar="FORMAT", type=str,
-		help="set the encode output format. This value is given in the "
-			"Python format string syntax")
+		help="set the encode output format. This value is either an integer, "
+			"specifying the precision, or a string "
+			"in the Python format string syntax")
 	
 	parser.add_argument("-d, --decode",
 		dest="decode", metavar="NUMBER", type=str,
@@ -477,6 +479,12 @@ if __name__ == "__main__":
 		number = None
 	
 	if number:
+		
+		try:
+			fmt = int(args.format)
+		except:
+			fmt = args.format
+		
 		if number == "-":
 			numbers = sys.stdin
 		else:
@@ -490,7 +498,7 @@ if __name__ == "__main__":
 					number = int(number)
 				except ValueError:
 					number = float(number)
-				print(radix.encode(number, args.format))
+				print(radix.encode(number, fmt))
 			else:
 				print(radix.decode(number))
 	
