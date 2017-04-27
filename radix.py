@@ -198,7 +198,7 @@ class Radix:
 		'''Encode a number.
 		
 		Args:
-			number: The number encode.
+			number: The number to encode.
 			fmt: The encode format.
 				This value is either an integer, specifying the scale, or
 				a string in the Python format string syntax.
@@ -323,7 +323,7 @@ class Radix:
 		'''Decode a number.
 		
 		Args:
-			number: The number decode.
+			number: The number to decode.
 		'''
 		number = number.strip().replace(self.tsep, "")
 		is_negative = number.startswith(self.neg)
