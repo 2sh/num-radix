@@ -56,7 +56,8 @@ Encode with the radix object.
 ```
 dozenal.encode(3546)
 dozenal.encode(142456.25, "013.4f")
-"This number '{:013.4f}' is in dozenal".format(dozenal.wrap(142456.25))
+numbers = [142456.25, 34, 0.000345]
+"These numbers {:013.4f}, {}, {:e} are in dozenal".format(*dozenal.wrap(numbers))
 ```
 
 Decode with the radix object.
