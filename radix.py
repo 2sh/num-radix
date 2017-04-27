@@ -547,8 +547,6 @@ if __name__ == "__main__":
 		print("Physical Constants")
 		print("c  = {:,d} m/s".format(radix.wrap(299792458)))
 		print("c  = {:.2e} m/s".format(radix.wrap(299792458)))
-		print("G  = {:.8e} Nm²/kg²".format(radix.wrap(6.6740831*10**-11)))
-		print("h  = {:.8e} Js".format(radix.wrap(6.62607004081*10**-34)))
 		print("e  = {:.8e} C".format(radix.wrap(1.6021766208*10**-19)))
 		print()
 		
