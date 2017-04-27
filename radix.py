@@ -330,20 +330,30 @@ class Radix:
 		if is_negative or number.startswith(self.pos):
 			number = number[1:]
 		
-		try:
-			exponent = number.index(self.sep)-1
-		except:
-			exponent = len(number)-1
+		if self.exp in number:
+			number, exponent = number.split(self.exp)
+			exponent = self.decode(exponent)
 		else:
-			number = number[:exponent+1] + number[exponent+2:]
+			exponent = 0
+		
+		try:
+			decode_exponent = number.index(self.sep)-1
+		except:
+			decode_exponent = len(number)-1
+		else:
+			number = number[:decode_exponent+1] + number[decode_exponent+2:]
 		
 		output = 0
 		for digit in number:
 			try:
-				output += self.digits.index(digit) * (self.base ** exponent)
+				output += (self.digits.index(digit) *
+					self.base ** decode_exponent)
 			except ValueError:
 				raise ValueError("Invalid digit '{}'".format(digit))
-			exponent -= 1
+			decode_exponent -= 1
+		
+		if exponent:
+			output *= self.base ** exponent
 		
 		if is_negative:
 			output *= -1
