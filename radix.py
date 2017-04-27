@@ -203,13 +203,12 @@ class Radix:
 				This value is either an integer, specifying the scale, or
 				a string in the Python format string syntax.
 		'''
+		exponent = None
 		if type(fmt) is str:
 			if fmt.endswith("e") or fmt.endswith("E"):
 				exponent = math.floor(
 					math.log(abs(number))/math.log(self.base))
 				number *= self.base ** (exponent*-1)
-		else:
-			exponent = None
 		
 		integer, fraction = divmod(abs(number), 1)
 		integer = int(integer)
@@ -227,19 +226,19 @@ class Radix:
 		
 		template_fmt = fmt
 		if has_fraction:
-			if not template_fmt:
-				scale = 17-len(indexes)
+			if type(template_fmt) is int:
+				scale = template_fmt
 				template_fmt = "." + str(scale) + "f"
 			else:
-				if type(template_fmt) is int:
-					scale = template_fmt
-					template_fmt = "." + str(scale) + "f"
+				scale = 17-len(indexes)
+				if type(template_fmt) is str:
+					s = self._get_scale_from_format(template_fmt)
+					if s:
+						scale = s
 				else:
-					scale = self._get_scale_from_format(
-						template_fmt)
-				
-			template = float(
-				(len(indexes) * "1") + "." + (scale * "1"))
+					template_fmt = "." + str(scale) + "f"
+			
+			template = float((len(indexes) * "1") + "." + (scale * "1"))
 		else:
 			if not template_fmt:
 				template_fmt = "d"
