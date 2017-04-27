@@ -325,7 +325,7 @@ class Radix:
 		Args:
 			number: The number decode.
 		'''
-		number = number.strip()
+		number = number.strip().replace(self.tsep, "")
 		is_negative = number.startswith(self.neg)
 		if is_negative or number.startswith(self.pos):
 			number = number[1:]
