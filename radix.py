@@ -337,20 +337,20 @@ class Radix:
 			exponent = 0
 		
 		try:
-			decode_exponent = number.index(self.sep)-1
+			loop_exponent = number.index(self.sep)-1
 		except:
-			decode_exponent = len(number)-1
+			loop_exponent = len(number)-1
 		else:
-			number = number[:decode_exponent+1] + number[decode_exponent+2:]
+			number = number[:loop_exponent+1] + number[loop_exponent+2:]
 		
 		output = 0
 		for digit in number:
 			try:
 				output += (self.digits.index(digit) *
-					self.base ** decode_exponent)
+					self.base ** loop_exponent)
 			except ValueError:
 				raise ValueError("Invalid digit '{}'".format(digit))
-			decode_exponent -= 1
+			loop_exponent -= 1
 		
 		if exponent:
 			output *= self.base ** exponent
