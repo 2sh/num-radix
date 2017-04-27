@@ -204,13 +204,12 @@ class Radix:
 				a string in the Python format string syntax.
 		'''
 		if type(fmt) is str:
-			show_exponent_notation = fmt.endswith("e") or fmt.endswith("E")
-			if show_exponent_notation:
+			if fmt.endswith("e") or fmt.endswith("E"):
 				exponent = math.floor(
 					math.log(abs(number))/math.log(self.base))
 				number *= self.base ** (exponent*-1)
 		else:
-			show_exponent_notation = False
+			exponent = None
 		
 		integer, fraction = divmod(abs(number), 1)
 		integer = int(integer)
@@ -249,7 +248,7 @@ class Radix:
 			template *= -1
 		template = format(template, template_fmt)
 		
-		if show_exponent_notation:
+		if exponent is not None:
 			template, _ = template.split(fmt[-1])
 		
 		if has_fraction:
@@ -281,7 +280,7 @@ class Radix:
 			if output.endswith(self.sep):
 				output += self.digits[0]
 		
-		if show_exponent_notation:
+		if exponent is not None:
 			output += self.exp + self.encode(exponent, "+03d")
 		
 		return output
