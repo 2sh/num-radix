@@ -15,13 +15,18 @@ python radix.py --help
 
 By default, the script encodes and decodes in dozenal.
 
-This outputs '6X,534;3000', encoded in dozenal.
+This outputs '6X,534;3000' encoded in dozenal.
 ```
 python radix.py --encode 142456.25 --format ',.4f'
 ```
 The format string causes the output to have a scale of 4 and every 3 integer
 digits to be separated by a comma.
-The format is given in Python format string syntax.
+The format is given in [Python format string syntax](https://docs.python.org/3.4/library/string.html#format-specification-mini-language).
+
+Format with e-notation. This outputs '4;133X82e-0E'.
+```
+python radix.py --encode 0.000000000005526745 --format '.6e'
+```
 
 Encode in hexadecimal.
 ```
@@ -50,8 +55,8 @@ base20 = Radix("0123456789ABCDEFGHIJ", sep="|")
 Encode with the radix object.
 ```
 dozenal.encode(3546)
-dozenal.encode(142456.25, ",.4f")
-"This number '{:,.4f}' is in dozenal".format(dozenal.wrap(142456.25))
+dozenal.encode(142456.25, "013.4f")
+"This number '{:013.4f}' is in dozenal".format(dozenal.wrap(142456.25))
 ```
 
 Decode with the radix object.
