@@ -60,6 +60,13 @@ numbers = [142456.25, 34, 0.000345]
 "These numbers {:013.4f}, {}, {:e} are in dozenal".format(*dozenal.wrap(numbers))
 ```
 
+Encoding date & time.
+```
+now = datetime.now()
+dozenal_now = dozenal.wrap(now.timetuple()[:6])
+"{}-{:02}-{:02} {:02}:{:02}:{:02}".format(*dozenal_now)
+```
+
 Decode with the radix object.
 ```
 dozenal.decode("6X534;3")
