@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 #
-#	radix.py, radix encoding, decoding and formatting
-#	Copyright (C) 2017 2sh <contact@2sh.me>
+#	num-radix - Number radix/base encoding, decoding and formatting
+#	
+#	Copyright (C) 2017-2018 2sh <contact@2sh.me>
 #	
 #	This program is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -399,13 +400,12 @@ class RadixFormatWrapper:
 		return ("RadixFormatWrapper({self.number!r}, {self.radix!r})"
 			).format(self=self)
 
-if __name__ == "__main__":
+def _main():
 	from datetime import datetime
 	from time import sleep
 	import argparse
 	import os
 	import sys
-	import fileinput
 	
 	parser = argparse.ArgumentParser(description="Radix Converter")
 	
@@ -567,3 +567,6 @@ if __name__ == "__main__":
 			sleep(1-(local.microsecond/1000000))
 	else:
 		parser.print_help()
+
+if __name__ == "__main__":
+	_main()
