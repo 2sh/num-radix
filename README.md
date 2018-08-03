@@ -89,4 +89,4 @@ Decode with the radix object.
 ```
 dozenal.decode("6X534;3")
 ```
-There are more examples in the demo section at the end of the __init__.py file.
+There are more examples in the demo section at the end of the ```__init__.py``` file.
