@@ -567,6 +567,3 @@ def _main():
 			sleep(1-(local.microsecond/1000000))
 	else:
 		parser.print_help()
-
-if __name__ == "__main__":
-	_main()
