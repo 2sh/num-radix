@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
 	name="num-radix",
-	version="1.0.1",
+	version="1.0.2",
 	
 	author="2sh",
 	author_email="contact@2sh.me",
